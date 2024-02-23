@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Using what you did in the task #0, extend your
-Python script to export data in the JSON format
+Model to make a request to an
+API and retrieve data
 """
 
 
@@ -11,11 +11,11 @@ import requests
 
 if __name__ == "__main__":
     URL = "https://jsonplaceholder.typicode.com/"
-    data = requests.get(f"{URL}users")
-    user_data = data.json()
+    res = requests.get(f"{URL}users")
+    user_data = res.json()
 
-    data = requests.get(f"{URL}todos")
-    all_todos = data.json()
+    res = requests.get(f"{URL}todos")
+    all_todos = res.json()
 
     user_json = {}
     for user in user_data:
@@ -27,5 +27,5 @@ if __name__ == "__main__":
                                    "completed": todos['completed']})
         user_json[f"{user['id']}"] = user_todos
 
-    with open("todo_all_employees.json", 'w') as f:
-        json.dump(user_json, f)
+    with open("todo_all_employees.json", 'w') as file:
+        json.dump(user_json, file)
